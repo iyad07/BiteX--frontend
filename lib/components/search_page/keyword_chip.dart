@@ -6,10 +6,13 @@ class KeywordChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Chip(
-      label: Text(label),
-      shape: StadiumBorder(side: BorderSide(color:Color.fromARGB(153, 231, 231, 231),width: 2)),
-      backgroundColor: Colors.white,
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 4),
+      child: Chip(
+        label: Text(label,style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16)),
+        shape: StadiumBorder(side: BorderSide(color:Color.fromARGB(153, 231, 231, 231),width: 2)),
+        backgroundColor: Colors.white,
+      ),
     );
   }
 }

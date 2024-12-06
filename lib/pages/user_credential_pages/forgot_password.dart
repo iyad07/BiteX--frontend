@@ -29,7 +29,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     }
 
     // Logic to send the reset code
-    print('Sending reset code to $email');
   }
 
   @override

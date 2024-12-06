@@ -2,6 +2,8 @@ import 'package:bikex/components/buttons.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({super.key});
+
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();
 }
@@ -78,7 +80,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   void _finishOnboarding() {
     // Handle finishing the onboarding (e.g., navigate to the home screen)
-    print("Onboarding completed! Navigating to home screen...");
     Navigator.pushNamed(context, '/login');
   }
 }
@@ -92,14 +93,14 @@ class OnboardingPage extends StatelessWidget {
   final int currentPage;
 
   const OnboardingPage({
-    Key? key,
+    super.key,
     required this.title,
     required this.description,
     required this.isLastPage,
     required this.currentPage,
     this.onNext,
     this.onSkip,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

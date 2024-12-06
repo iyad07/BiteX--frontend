@@ -3,7 +3,7 @@ import 'package:bikex/components/dashboard/category_card.dart';
 import 'package:bikex/components/dashboard/restaurant_card.dart';
 import 'package:bikex/components/dashboard/search_bar.dart';
 import 'package:bikex/data/restaurant_handler.dart';
-import 'package:bikex/models/restaurant.dart';
+import 'package:bikex/pages/Dashboard/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -127,7 +127,14 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
               SizedBox(height: 16),
               Container(
                   padding: EdgeInsets.symmetric(horizontal: 12),
-                  child: searchBar()),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SearchPage()),
+                      );
+                    },
+                    child: searchBar(enabled: false))),
               SizedBox(height: 8),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16),
@@ -210,16 +217,7 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
                 child: ListView(
                   children: [
                     RestaurantCard(
-                      restaurant: Restaurant(
-                        restaurantName: 'Waakye Supreme',
-                        restaurantImage:
-                            "https://images.bolt.eu/store/2022/2022-02-09/0007c966-0747-4e5b-842c-beddf6b776af.jpeg",
-                        rating: 2,
-                        deliveryTime: "short",
-                        isFreeDelivery: true,
-                        restaurantCategories: "Fast food",
-                        foodList: [],
-                      ),
+                      restaurant: value.restaurantList[0],
                     ),
                     // Add more RestaurantCard widgets here if needed.
                   ],
