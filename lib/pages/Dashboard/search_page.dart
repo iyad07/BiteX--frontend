@@ -3,7 +3,6 @@ import 'package:bikex/components/search_page/keyword_chip.dart';
 import 'package:bikex/components/search_page/pop_food_tile.dart';
 import 'package:bikex/components/search_page/sug_res__tile.dart';
 import 'package:bikex/data/restaurant_handler.dart';
-import 'package:bikex/models/food.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -153,22 +152,15 @@ class _SearchPageState extends State<SearchPage> {
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 2.3 / 2,
+                    childAspectRatio: 5/4,
                     crossAxisSpacing: 40,
                     mainAxisSpacing: 10,
                   ),
-                  itemCount: 2, // Adjust this based on your data
+                  itemCount: value.getAllFood().length, // Adjust this based on your data
                   itemBuilder: (context, index) {
                     return PopularFoodTile(
-                      food: index == 0
-                          ? Food(
-                              foodTitle: "Waakye",
-                              price: 30,
-                              restaurant: value.restaurantList[0])
-                          : Food(
-                              foodTitle: "Jollof Rice",
-                              price: 30,
-                              restaurant: value.restaurantList[0]),
+                      food: value.getAllFood()[index],
+                      restaurant: value.restaurantList[index],
                     );
                   },
                 ),

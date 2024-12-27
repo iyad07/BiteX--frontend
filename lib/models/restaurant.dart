@@ -1,12 +1,12 @@
 import 'package:bikex/models/food.dart';
 
-class Restaurant{
-  String restaurantName;
-  String restaurantImage;
-  double rating;
-  String deliveryTime;
-  bool isFreeDelivery;
-  String restaurantCategories;
+class Restaurant {
+  final String restaurantName;
+  final String restaurantImage;
+  final int rating;
+  final String deliveryTime;
+  final bool isFreeDelivery;
+  final String restaurantCategories;
   List<Food> foodList;
 
   Restaurant({
@@ -16,6 +16,10 @@ class Restaurant{
     required this.deliveryTime,
     required this.isFreeDelivery,
     required this.restaurantCategories,
-    required this.foodList,
-  });
+    List<Food>? foodList,
+  }) : foodList = foodList ?? [];
+
+  void addFood(Food food) {
+    foodList.add(food);
+  }
 }

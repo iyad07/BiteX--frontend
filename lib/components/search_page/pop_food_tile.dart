@@ -1,9 +1,11 @@
 import 'package:bikex/models/food.dart';
+import 'package:bikex/models/restaurant.dart';
 import 'package:flutter/material.dart';
 
 class PopularFoodTile extends StatelessWidget {
   final Food food;
-  const PopularFoodTile({super.key, required this.food});
+  final Restaurant restaurant;
+  const PopularFoodTile({super.key, required this.food,required this.restaurant});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,7 @@ class PopularFoodTile extends StatelessWidget {
                         ),
                         SizedBox(height: 4),
                         Text(
-                          food.restaurant.restaurantName,
+                          restaurant.restaurantName,
                           style: TextStyle(color: Colors.grey[600], fontSize: 13),
                           overflow: TextOverflow.ellipsis,
                         ),

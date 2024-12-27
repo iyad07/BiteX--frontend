@@ -1,6 +1,10 @@
 import 'package:bikex/data/restaurant_handler.dart';
+import 'package:bikex/models/food.dart';
+import 'package:bikex/models/restaurant.dart';
 import 'package:bikex/pages/Dashboard/dashboard.dart';
 import 'package:bikex/pages/Dashboard/search_page.dart';
+import 'package:bikex/pages/food_pages/food_pages.dart';
+import 'package:bikex/pages/restaurant%20_page/restaurant_page.dart';
 import 'package:bikex/pages/user_credential_pages/forgot_password.dart';
 import 'package:bikex/pages/user_credential_pages/login.dart';
 import 'package:bikex/pages/onboarding%20screens/onboarding_screen.dart';
@@ -25,16 +29,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
       title: 'BikeX',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        //colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
-        //useMaterial3: true,
         fontFamily: 'Sen',
       ),
+      
       initialRoute: '/dashboard',
       routes: {
+        '/food_page':(context)=> FoodPages(food: ModalRoute.of(context)!.settings.arguments as Food),
+        '/restaurant': (context) => RestaurantPage(restaurant: ModalRoute.of(context)!.settings.arguments as Restaurant),
         '/search': (context) => SearchPage(),
         '/dashboard': (context) => RestaurantDashboard(),
         '/onboarding1': (context) => OnboardingScreen(),

@@ -214,13 +214,15 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
                 ),
               ),
               Expanded(
-                child: ListView(
-                  children: [
+                child: ListView.builder(
+                  itemCount: value.restaurantList.length,
+                  itemBuilder: (context,index)=>
                     RestaurantCard(
-                      restaurant: value.restaurantList[0],
+                      onTap: () => Navigator.pushNamed(context, '/restaurant',arguments: value.restaurantList[index]),
+                      restaurant: value.restaurantList[index],
                     ),
                     // Add more RestaurantCard widgets here if needed.
-                  ],
+                  
                 ),
               ),
             ],

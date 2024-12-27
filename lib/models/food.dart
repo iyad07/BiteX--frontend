@@ -4,11 +4,12 @@ class Food {
   String foodTitle;
   String? foodImage;
   int price;
-  Restaurant restaurant;
+  Restaurant? restaurant; // Reference to the parent Restaurant
+
   Food({
     required this.foodTitle,
     this.foodImage,
     required this.price,
-    required this.restaurant,
+    this.restaurant,
   });
 }
