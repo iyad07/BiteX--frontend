@@ -1,4 +1,5 @@
 import 'package:bikex/components/restaurant_page/category_chip.dart';
+import 'package:bikex/components/restaurant_page/filter_popup.dart';
 import 'package:bikex/components/restaurant_page/food_tile.dart';
 import 'package:bikex/data/restaurant_handler.dart';
 import 'package:bikex/models/restaurant.dart';
@@ -42,12 +43,14 @@ class _RestaurantPageState extends State<RestaurantPage> {
                 actions: [
                   IconButton(
                     icon: const Icon(
-                      Icons.more_horiz,
+                      Icons.filter_alt_rounded,
                     ),
                     style:
                         IconButton.styleFrom(backgroundColor: Colors.grey[100]),
                     onPressed: () {
-                      // More options logic
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) => FilterFood());
                     },
                   ),
                 ],

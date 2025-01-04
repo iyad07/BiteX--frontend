@@ -1,3 +1,4 @@
+import 'package:bikex/components/food_page/ingred_icon.dart';
 import 'package:bikex/models/food.dart';
 import 'package:flutter/material.dart';
 
@@ -196,41 +197,23 @@ class _FoodPagesState extends State<FoodPages> {
               ],
             ),
             SizedBox(height: 16),
-            // Sizes
-            Text(
-              "SIZE:",
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _buildSizeOption("10\"", isSelected: false),
-                _buildSizeOption("14\"", isSelected: true),
-                _buildSizeOption("16\"", isSelected: false),
-              ],
-            ),
-            SizedBox(height: 16),
             // Ingredients
             Text(
               "INGREDIENTS",
               style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
+                fontSize: 13,
+                fontWeight: FontWeight.w400,
               ),
             ),
             SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _buildIngredientIcon(Icons.local_pizza),
-                _buildIngredientIcon(Icons.no_meals),
-                _buildIngredientIcon(Icons.dining),
-                _buildIngredientIcon(Icons.food_bank),
-                _buildIngredientIcon(Icons.set_meal),
+                buildIngredientIcon(Icons.local_pizza),
+                buildIngredientIcon(Icons.no_meals),
+                buildIngredientIcon(Icons.dining),
+                buildIngredientIcon(Icons.food_bank),
+                buildIngredientIcon(Icons.set_meal),
               ],
             ),
             Spacer(),
@@ -241,30 +224,5 @@ class _FoodPagesState extends State<FoodPages> {
     );
   }
 
-  Widget _buildSizeOption(String size, {bool isSelected = false}) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      decoration: BoxDecoration(
-        color: isSelected ? Colors.orange : Colors.grey[200],
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Text(
-        size,
-        style: TextStyle(
-          color: isSelected ? Colors.white : Colors.black,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildIngredientIcon(IconData icon) {
-    return CircleAvatar(
-      backgroundColor: Colors.orange[100],
-      child: Icon(
-        icon,
-        color: Colors.orange,
-      ),
-    );
-  }
+  
 }
