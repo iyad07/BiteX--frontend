@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 class CartItem extends StatefulWidget {
   Food food;
   int? quantity;
+  bool isEdit;
 
-  CartItem({super.key, required this.food, this.quantity=0});
+  CartItem(
+      {super.key, required this.food, this.quantity = 0, required this.isEdit});
 
   @override
   State<CartItem> createState() => _CartItemState();
@@ -60,32 +62,48 @@ class _CartItemState extends State<CartItem> {
             ],
           ),
         ),
-        Row(
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  if (widget.quantity != null && widget.quantity != 0) {
-                    widget.quantity = (widget.quantity! - 1);
-                  }
-                });
-              },
-              icon: Icon(
-                Icons.remove,
+            SizedBox(
+              height: 27,
+              width: 27,
+              child: IconButton(
+                iconSize: 12,
+                onPressed: () {},
+                icon: Icon(Icons.close, color: Colors.white,),
+                style: IconButton.styleFrom(backgroundColor: Colors.red,),
               ),
             ),
-            Text(widget.quantity.toString()),
-            IconButton(
-              onPressed:() {
-                setState(() {
-                  if (widget.quantity != null) {
-                    widget.quantity = (widget.quantity! + 1);
-                  }
-                });
-              },
-              icon: Icon(
-                Icons.add,
-              ),
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      if (widget.quantity != null && widget.quantity != 0) {
+                        widget.quantity = (widget.quantity! - 1);
+                      }
+                    });
+                  },
+                  icon: Icon(
+                    Icons.remove,
+                  ),
+                ),
+                Text(widget.quantity.toString()),
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      if (widget.quantity != null) {
+                        widget.quantity = (widget.quantity! + 1);
+                      }
+                    });
+                  },
+                  icon: Icon(
+                    Icons.add,
+                  ),
+                ),
+              ],
             ),
           ],
         ),

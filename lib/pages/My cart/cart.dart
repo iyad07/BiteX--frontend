@@ -95,7 +95,7 @@ class _CartPageState extends State<CartPage> {
                         return Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 16.0, vertical: 8.0),
-                            child: CartItem(food: value.getAllFood()[index]));
+                            child: CartItem(food: value.getAllFood()[index], isEdit: false,));
                       },
                     ),
                   ),

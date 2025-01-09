@@ -4,6 +4,7 @@ import 'package:bikex/models/restaurant.dart';
 import 'package:bikex/pages/Dashboard/dashboard.dart';
 import 'package:bikex/pages/Dashboard/search_page.dart';
 import 'package:bikex/pages/My%20cart/cart.dart';
+import 'package:bikex/pages/My%20cart/edit_cart.dart';
 import 'package:bikex/pages/food_pages/food_pages.dart';
 import 'package:bikex/pages/restaurant%20_page/restaurant_page.dart';
 import 'package:bikex/pages/user_credential_pages/forgot_password.dart';
@@ -38,8 +39,9 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Sen',
       ),
       
-      initialRoute: '/my_cart',
+      initialRoute: '/edit_cart',
       routes: {
+        '/edit_cart':(context) => EditCartPage(),
         '/my_cart':(context)=>const CartPage(),
         '/food_page':(context)=> FoodPages(food: ModalRoute.of(context)!.settings.arguments as Food),
         '/restaurant': (context) => RestaurantPage(restaurant: ModalRoute.of(context)!.settings.arguments as Restaurant),
