@@ -17,7 +17,7 @@ class RestaurantHandler extends ChangeNotifier {
     Restaurant(
       restaurantName: 'Pizza Palace',
       restaurantImage:
-          "https://images.bolt.eu/store/2022/2022-03-01/f0d2bd30-4448-11eb-9779-0242ac130002.jpeg",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGARNcg22HO5RZdURE8nl_ppn7ZX2rAtXyow&s",
       rating: 5,
       deliveryTime: "45 mins",
       isFreeDelivery: false,
@@ -37,6 +37,7 @@ class RestaurantHandler extends ChangeNotifier {
             foodImage:
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScVNVvymzdm9IHeq9REMYRky2CILFnbtJDMQ&s",
             price: 70,
+            restaurant: restaurant,
           ),
         );
         restaurant.addFood(
@@ -45,6 +46,7 @@ class RestaurantHandler extends ChangeNotifier {
             foodImage:
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHllcw0H5cCzTH2-ZU25Lm-SUKcBlwMaCLCstawlIHKJMKTBGF_z_f5rt9tQ5tcpyNBdY&usqp=CAU",
             price: 50,
+            restaurant: restaurant
           ),
         );
       } else if (restaurant.restaurantName == "Pizza Palace") {
@@ -52,16 +54,18 @@ class RestaurantHandler extends ChangeNotifier {
           Food(
             foodTitle: "Pepperoni Pizza",
             foodImage:
-                "https://example.com/pepperoni-pizza.jpg",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5ask8c39yQLLJYEXGXsq9ajVwRYjkEPjhJA&s",
             price: 120,
+            restaurant: restaurant
           ),
         );
         restaurant.addFood(
           Food(
             foodTitle: "Margherita Pizza",
             foodImage:
-                "https://example.com/margherita-pizza.jpg",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5ask8c39yQLLJYEXGXsq9ajVwRYjkEPjhJA&s",
             price: 100,
+            restaurant: restaurant,
           ),
         );
       }
