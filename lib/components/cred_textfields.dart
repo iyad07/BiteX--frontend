@@ -5,16 +5,17 @@ Widget buildCredTextField(
   TextEditingController? controller,
   TextInputType? keyboardType,
   bool isPassword = false,
+  bool? hasTitle= true,
 }) =>
     SizedBox(
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          hasTitle! ?Text(
             labelText,
             style: TextStyle(height: 3),
-          ),
+          ):SizedBox(),
           TextField(
             controller: controller,
             keyboardType: keyboardType,
