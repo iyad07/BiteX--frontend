@@ -1,12 +1,11 @@
-import 'package:bikex/components/buttons.dart';
-import 'package:bikex/components/cred_textfields.dart';
-import 'package:bikex/components/mycart/cart_item.dart';
+import 'package:bikex/components/mycart/cart_item_comp.dart';
 import 'package:bikex/data/restaurant_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class EditCartPage extends StatefulWidget {
-  const EditCartPage({super.key});
+  VoidCallback onDone;
+  EditCartPage({super.key, required this.onDone });
 
   @override
   State<EditCartPage> createState() => _EditCartPageState();
@@ -17,49 +16,6 @@ class _EditCartPageState extends State<EditCartPage> {
   Widget build(BuildContext context) {
     return Consumer<RestaurantHandler>(
         builder: (context, value, child) => Scaffold(
-              bottomSheet: Padding(
-                padding: EdgeInsets.all(16),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'DELIVERY ADDRESS',
-                          style: TextStyle(
-                              color: Colors.grey, fontWeight: FontWeight.bold),
-                        ),
-                        textButton("EDIT", (){})
-                      ],
-                    ),
-                    SizedBox(height: 8),
-                    buildCredTextField("Delivery Address",hasTitle: false),
-                    SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'TOTAL:',
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Breakdown >',
-                            style: TextStyle(color: Colors.orange),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 8),
-                    elevatedButton("PLACE ORDER", (){}),
-                  ],
-                ),
-              ),
               appBar: AppBar(
                 backgroundColor: Colors.transparent,
                 leading: IconButton(
@@ -73,7 +29,7 @@ class _EditCartPageState extends State<EditCartPage> {
                 ),
                 actions: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: widget.onDone,
                     child: Text(
                       'DONE',
                       style: TextStyle(

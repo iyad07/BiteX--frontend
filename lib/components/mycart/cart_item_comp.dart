@@ -66,6 +66,7 @@ class _CartItemState extends State<CartItem> {
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            widget.isEdit?
             SizedBox(
               height: 27,
               width: 27,
@@ -75,7 +76,7 @@ class _CartItemState extends State<CartItem> {
                 icon: Icon(Icons.close, color: Colors.white,),
                 style: IconButton.styleFrom(backgroundColor: Colors.red,),
               ),
-            ),
+            ):SizedBox(),
             Row(
               children: [
                 IconButton(
