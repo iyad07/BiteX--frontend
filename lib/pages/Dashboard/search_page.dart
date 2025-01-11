@@ -152,7 +152,7 @@ class _SearchPageState extends State<SearchPage> {
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 5/4,
+                    childAspectRatio: 4.7/4,
                     crossAxisSpacing: 40,
                     mainAxisSpacing: 10,
                   ),
@@ -160,7 +160,7 @@ class _SearchPageState extends State<SearchPage> {
                   itemBuilder: (context, index) {
                     return PopularFoodTile(
                       food: value.getAllFood()[index],
-                      restaurant: value.restaurantList[index],
+                      restaurant: value.getAllFood()[index].restaurant!, // Assuming Restaurant() is a valid default value
                     );
                   },
                 ),
