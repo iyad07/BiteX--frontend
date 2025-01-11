@@ -8,11 +8,16 @@ class SugResTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      shape: UnderlineInputBorder(borderSide: BorderSide(color: const Color.fromARGB(255, 235, 235, 235))),
+      shape: UnderlineInputBorder(
+          borderSide:
+              BorderSide(color: const Color.fromARGB(255, 235, 235, 235))),
       leading: Container(
         width: 60,
         height: 50,
         decoration: BoxDecoration(
+          image: DecorationImage(
+              image: NetworkImage(restaurant.restaurantImage),
+              fit: BoxFit.cover),
           color: Colors.grey[300],
           borderRadius: BorderRadius.circular(8),
         ),

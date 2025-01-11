@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 class PopularFoodTile extends StatelessWidget {
   final Food food;
   final Restaurant restaurant;
-  const PopularFoodTile({super.key, required this.food,required this.restaurant});
+  const PopularFoodTile(
+      {super.key, required this.food, required this.restaurant});
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +39,7 @@ class PopularFoodTile extends StatelessWidget {
                   ],
                 ),
                 child: Transform(
-                  transform: Matrix4.identity()
-                    ..rotateX(0.2),
+                  transform: Matrix4.identity()..rotateX(0.2),
                   alignment: Alignment.center,
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -49,13 +49,15 @@ class PopularFoodTile extends StatelessWidget {
                       children: [
                         Text(
                           food.foodTitle,
-                          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
                           overflow: TextOverflow.ellipsis,
                         ),
                         SizedBox(height: 4),
                         Text(
                           restaurant.restaurantName,
-                          style: TextStyle(color: Colors.grey[600], fontSize: 13),
+                          style:
+                              TextStyle(color: Colors.grey[600], fontSize: 13),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ],
@@ -72,6 +74,8 @@ class PopularFoodTile extends StatelessWidget {
               width: 122,
               padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: NetworkImage(food.foodImage!), fit: BoxFit.cover),
                 color: Colors.grey[300],
                 borderRadius: BorderRadius.circular(8),
               ),
