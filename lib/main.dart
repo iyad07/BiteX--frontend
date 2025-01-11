@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Sen',
       ),
       
-      initialRoute: '/my_cart',
+      initialRoute: '/dashboard',
       routes: {
         '/my_cart':(context)=>MyCart(isEditPage: false),
         '/food_page':(context)=> FoodPages(food: ModalRoute.of(context)!.settings.arguments as Food),

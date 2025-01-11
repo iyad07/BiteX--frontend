@@ -17,16 +17,16 @@ class MyCart extends StatefulWidget {
 }
 
 class _MyCartState extends State<MyCart> {
+  bool isEditMode = true;
+
+  void toggleEditMode() {
+    setState(() {
+      isEditMode = !isEditMode;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    bool isEditMode = true;
-
-    void toggleEditMode() {
-      setState(() {
-        isEditMode = !isEditMode;
-      });
-    }
-
     return Consumer(
       builder: (context, value, child) => Scaffold(
         bottomSheet: Padding(
