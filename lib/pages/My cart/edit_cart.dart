@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 class EditCartPage extends StatefulWidget {
   VoidCallback onDone;
-  EditCartPage({super.key, required this.onDone });
+  EditCartPage({super.key, required this.onDone});
 
   @override
   State<EditCartPage> createState() => _EditCartPageState();
@@ -19,9 +19,16 @@ class _EditCartPageState extends State<EditCartPage> {
               appBar: AppBar(
                 backgroundColor: Colors.transparent,
                 leading: IconButton(
-                  style: IconButton.styleFrom(backgroundColor: Colors.grey[200]),
-                  icon: Icon(Icons.arrow_back_ios, color: Colors.black,size: 20,),
-                  onPressed: () {},
+                  style:
+                      IconButton.styleFrom(backgroundColor: Colors.grey[200]),
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.black,
+                    size: 20,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                 ),
                 title: Text(
                   'Cart',
@@ -51,7 +58,10 @@ class _EditCartPageState extends State<EditCartPage> {
                         return Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 16.0, vertical: 8.0),
-                            child: CartItem(food: value.getAllFood()[index],isEdit: true,));
+                            child: CartItem(
+                              food: value.getAllFood()[index],
+                              isEdit: true,
+                            ));
                       },
                     ),
                   ),

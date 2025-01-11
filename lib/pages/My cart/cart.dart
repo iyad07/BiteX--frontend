@@ -19,9 +19,16 @@ class _CartPageState extends State<CartPage> {
               appBar: AppBar(
                 backgroundColor: Colors.transparent,
                 leading: IconButton(
-                  style: IconButton.styleFrom(backgroundColor: Colors.grey[200]),
-                  icon: Icon(Icons.arrow_back_ios, color: Colors.black,size: 20,),
-                  onPressed: () {},
+                  style:
+                      IconButton.styleFrom(backgroundColor: Colors.grey[200]),
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.black,
+                    size: 20,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                 ),
                 title: Text(
                   'Cart',
@@ -49,9 +56,13 @@ class _CartPageState extends State<CartPage> {
                           .length, // Placeholder for the number of items
                       itemBuilder: (context, index) {
                         return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 16.0, vertical: 8.0),
-                            child: CartItem(food: value.getAllFood()[index], isEdit: false,));
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 8.0),
+                          child: CartItem(
+                            food: value.getAllFood()[index],
+                            isEdit: false,
+                          ),
+                        );
                       },
                     ),
                   ),

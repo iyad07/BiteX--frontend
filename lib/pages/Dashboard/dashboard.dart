@@ -26,13 +26,13 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
         appBar: AppBar(
           leadingWidth: 56,
           leading: Container(
-                margin: EdgeInsets.only(left: 16),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.grey[200],
-                ),
-                child: Icon(Icons.menu_rounded),
-              ),
+            margin: EdgeInsets.only(left: 16),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.grey[200],
+            ),
+            child: Icon(Icons.menu_rounded),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           title: Column(
@@ -65,39 +65,47 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
             ],
           ),
           actions: [
-            Stack(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(6),
-                  margin: EdgeInsets.only(right: 16),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.black,
-                  ),
-                  child: Icon(Icons.shopping_bag_outlined,color: Colors.white,),
-                ),
-                Positioned(
-                  right: 16,
-                  top: 0,
-                  child: Container(
-                    width: 20,
-                    height: 20,
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/my_cart');
+              },
+              child: Stack(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(6),
+                    margin: EdgeInsets.only(right: 16),
                     decoration: BoxDecoration(
-                      color: Colors.red,
                       shape: BoxShape.circle,
+                      color: Colors.black,
                     ),
-                    child: Center(
-                      child: Text(
-                        '2',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold),
+                    child: Icon(
+                      Icons.shopping_bag_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Positioned(
+                    right: 16,
+                    top: 0,
+                    child: Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Text(
+                          '2',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
@@ -128,13 +136,13 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
               Container(
                   padding: EdgeInsets.symmetric(horizontal: 12),
                   child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SearchPage()),
-                      );
-                    },
-                    child: searchBar(enabled: false))),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SearchPage()),
+                        );
+                      },
+                      child: searchBar(enabled: false))),
               SizedBox(height: 8),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16),
@@ -216,13 +224,12 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
               Expanded(
                 child: ListView.builder(
                   itemCount: value.restaurantList.length,
-                  itemBuilder: (context,index)=>
-                    RestaurantCard(
-                      onTap: () => Navigator.pushNamed(context, '/restaurant',arguments: value.restaurantList[index]),
-                      restaurant: value.restaurantList[index],
-                    ),
-                    // Add more RestaurantCard widgets here if needed.
-                  
+                  itemBuilder: (context, index) => RestaurantCard(
+                    onTap: () => Navigator.pushNamed(context, '/restaurant',
+                        arguments: value.restaurantList[index]),
+                    restaurant: value.restaurantList[index],
+                  ),
+                  // Add more RestaurantCard widgets here if needed.
                 ),
               ),
             ],

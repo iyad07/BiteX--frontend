@@ -6,10 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class MyCart extends StatefulWidget {
-  final bool isEditPage;
   const MyCart({
     super.key,
-    required this.isEditPage,
   });
 
   @override
@@ -17,7 +15,7 @@ class MyCart extends StatefulWidget {
 }
 
 class _MyCartState extends State<MyCart> {
-  bool isEditMode = true;
+  bool isEditMode = false;
 
   void toggleEditMode() {
     setState(() {

@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       
       initialRoute: '/dashboard',
       routes: {
-        '/my_cart':(context)=>MyCart(isEditPage: false),
+        '/my_cart':(context)=>MyCart(),
         '/food_page':(context)=> FoodPages(food: ModalRoute.of(context)!.settings.arguments as Food),
         '/restaurant': (context) => RestaurantPage(restaurant: ModalRoute.of(context)!.settings.arguments as Restaurant),
         '/search': (context) => SearchPage(),
