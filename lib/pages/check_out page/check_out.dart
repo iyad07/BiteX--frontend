@@ -1,3 +1,4 @@
+import 'package:bikex/components/buttons.dart';
 import 'package:flutter/material.dart';
 
 class CheckOutPage extends StatefulWidget {
@@ -46,47 +47,39 @@ class _CheckOutPageState extends State<CheckOutPage> {
               ],
             ),
           ),
+          SizedBox(height: 24,),
           // Card details or "Add new" section
-          Expanded(
-            child: Center(
-              child: Container(
-                padding: EdgeInsets.all(16),
-                margin: EdgeInsets.symmetric(horizontal: 16),
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      height: 100,
-                      color: Colors.grey[300], // Placeholder for card image
-                    ),
-                    SizedBox(height: 16),
-                    Container(
-                      width: double.infinity,
-                      height: 16,
-                      color: Colors.grey[300], // Placeholder for text
-                    ),
-                    SizedBox(height: 8),
-                    Container(
-                      width: double.infinity,
-                      height: 16,
-                      color: Colors.grey[300], // Placeholder for subtitle
-                    ),
-                    SizedBox(height: 16),
-                    TextButton.icon(
-                      onPressed: () {},
-                      icon: Icon(Icons.add, color: Colors.orange),
-                      label: Text(
-                        'ADD NEW',
-                        style: TextStyle(color: Colors.orange),
-                      ),
-                    ),
-                  ],
-                ),
+          Center(
+            child: Container(
+              height:MediaQuery.sizeOf(context).height/3 ,
+              padding: EdgeInsets.all(16),
+              margin: EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 100,
+                    color: Colors.grey[300], // Placeholder for card image
+                  ),
+                  SizedBox(height: 16),
+                  Container(
+                    width: double.infinity,
+                    height: 16,
+                    color: Colors.grey[300], // Placeholder for text
+                  ),
+                  SizedBox(height: 8),
+                  Container(
+                    width: double.infinity,
+                    height: 16,
+                    color: Colors.grey[300], // Placeholder for subtitle
+                  ),
+                  SizedBox(height: 16),
+                ],
               ),
             ),
           ),
@@ -111,19 +104,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                   ],
                 ),
                 SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orange,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12.0),
-                    child: Text('PAY & CONFIRM'),
-                  ),
-                ),
+                elevatedButton("PAY & CONFIRM", (){})
               ],
             ),
           ),
