@@ -3,8 +3,8 @@ import 'package:bikex/components/checkout/card_widget.dart';
 import 'package:flutter/material.dart';
 
 class CheckOutPage extends StatefulWidget {
-  bool? hasCard;
-  CheckOutPage({super.key, this.hasCard = false});
+  final bool? hasCard;
+  const CheckOutPage({super.key, this.hasCard = false});
 
   @override
   State<CheckOutPage> createState() => _CheckOutPageState();
@@ -139,8 +139,10 @@ class _CheckOutPageState extends State<CheckOutPage> {
                       ),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: outLinedButton("ADD NEW", () {}),
-                )
+                  child: outLinedButton("ADD NEW", () {
+                    Navigator.pushNamed(context, '/add_payment');
+                  }),
+                ),
               ],
             ),
           ),

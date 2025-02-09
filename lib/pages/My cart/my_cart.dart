@@ -66,7 +66,9 @@ class _MyCartState extends State<MyCart> {
                 ],
               ),
               SizedBox(height: 8),
-              elevatedButton("PLACE ORDER", () {}),
+              elevatedButton("PLACE ORDER", () {
+                Navigator.pushNamed(context, '/check_out');
+              }),
             ],
           ),
         ),
