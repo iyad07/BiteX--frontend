@@ -6,6 +6,7 @@ import 'package:bikex/pages/Dashboard/search_page.dart';
 import 'package:bikex/pages/My%20cart/my_cart.dart';
 import 'package:bikex/pages/check_out%20page/add_payment.dart';
 import 'package:bikex/pages/check_out%20page/check_out.dart';
+import 'package:bikex/pages/check_out%20page/successfulpay.dart';
 import 'package:bikex/pages/food_pages/food_pages.dart';
 import 'package:bikex/pages/restaurant%20_page/restaurant_page.dart';
 import 'package:bikex/pages/user_credential_pages/forgot_password.dart';
@@ -40,8 +41,9 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Sen',
       ),
       
-      initialRoute: '/dashboard',
+      initialRoute: '/payment_successful',
       routes: {
+        '/payment_successful': (context)=> PaymentSuccessPage(),
         '/add_payment':(context)=> AddCardPage(),
         '/check_out':(context)=>CheckOutPage(hasCard: true,),
         '/my_cart':(context)=>MyCart(),
