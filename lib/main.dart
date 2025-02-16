@@ -9,6 +9,7 @@ import 'package:bikex/pages/check_out%20page/check_out.dart';
 import 'package:bikex/pages/check_out%20page/successfulpay.dart';
 import 'package:bikex/pages/food_pages/food_pages.dart';
 import 'package:bikex/pages/restaurant%20_page/restaurant_page.dart';
+import 'package:bikex/pages/tracking%20pages/map.dart';
 import 'package:bikex/pages/user_credential_pages/forgot_password.dart';
 import 'package:bikex/pages/user_credential_pages/login.dart';
 import 'package:bikex/pages/onboarding%20screens/onboarding_screen.dart';
@@ -41,8 +42,9 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Sen',
       ),
       
-      initialRoute: '/payment_successful',
+      initialRoute: '/dashboard',
       routes: {
+        '/map':(context)=>TrackOrderPage(),
         '/payment_successful': (context)=> PaymentSuccessPage(),
         '/add_payment':(context)=> AddCardPage(),
         '/check_out':(context)=>CheckOutPage(hasCard: true,),

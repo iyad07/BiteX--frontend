@@ -1,19 +1,19 @@
-import 'package:bikex/models/food.dart';
+import 'package:bikex/models/cart_item.dart';
+
 import 'package:flutter/material.dart';
 
-class CartItem extends StatefulWidget {
-  Food food;
-  int? quantity;
-  bool isEdit;
+class CartItemComp extends StatefulWidget {
+  final CartItem cartItem;
+  final bool isEdit;
 
-  CartItem(
-      {super.key, required this.food, this.quantity = 0, required this.isEdit});
+  const CartItemComp(
+      {super.key, required this.cartItem, required this.isEdit});
 
   @override
-  State<CartItem> createState() => _CartItemState();
+  State<CartItemComp> createState() => _CartItemState();
 }
 
-class _CartItemState extends State<CartItem> {
+class _CartItemState extends State<CartItemComp> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -31,7 +31,7 @@ class _CartItemState extends State<CartItem> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: NetworkImage(widget.food.foodImage!),
+                image: NetworkImage(widget.cartItem.food.foodImage!),
               ),
               color: Colors.grey,
               borderRadius: BorderRadius.circular(25),
@@ -51,12 +51,12 @@ class _CartItemState extends State<CartItem> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.food.restaurant!.restaurantName,
+                widget.cartItem.food.restaurant!.restaurantName,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
               ),
               SizedBox(height: 8),
               Text(
-                "\$${widget.food.price}",
+                "\$${widget.cartItem.food.price}",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
               ),
             ],
@@ -82,8 +82,8 @@ class _CartItemState extends State<CartItem> {
                 IconButton(
                   onPressed: () {
                     setState(() {
-                      if (widget.quantity != null && widget.quantity != 0) {
-                        widget.quantity = (widget.quantity! - 1);
+                      if (widget.cartItem.quantity != 0) {
+                        widget.cartItem.quantity = (widget.cartItem.quantity - 1);
                       }
                     });
                   },
@@ -91,14 +91,12 @@ class _CartItemState extends State<CartItem> {
                     Icons.remove,
                   ),
                 ),
-                Text(widget.quantity.toString()),
+                Text(widget.cartItem.quantity.toString()),
                 IconButton(
                   onPressed: () {
                     setState(() {
-                      if (widget.quantity != null) {
-                        widget.quantity = (widget.quantity! + 1);
-                      }
-                    });
+                      widget.cartItem.quantity = (widget.cartItem.quantity + 1);
+                                        });
                   },
                   icon: Icon(
                     Icons.add,

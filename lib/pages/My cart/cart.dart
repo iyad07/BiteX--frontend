@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CartPage extends StatefulWidget {
-  VoidCallback onEdit;
-  CartPage({super.key, required this.onEdit});
+  final VoidCallback onEdit;
+  const CartPage({super.key, required this.onEdit});
 
   @override
   State<CartPage> createState() => _CartPageState();
@@ -51,14 +51,14 @@ class _CartPageState extends State<CartPage> {
             Expanded(
               child: ListView.builder(
                 itemCount: value
-                    .getAllFood()
+                    .getCartItems()
                     .length, // Placeholder for the number of items
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16.0, vertical: 8.0),
-                    child: CartItem(
-                      food: value.getAllFood()[index],
+                    child: CartItemComp(
+                      cartItem: value.getCartItems()[index],
                       isEdit: false,
                     ),
                   );

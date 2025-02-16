@@ -1,3 +1,5 @@
+
+import 'package:bikex/models/cart_item.dart';
 import 'package:bikex/models/food.dart';
 import 'package:bikex/models/restaurant.dart';
 import 'package:flutter/material.dart';
@@ -42,22 +44,20 @@ class RestaurantHandler extends ChangeNotifier {
         );
         restaurant.addFood(
           Food(
-            foodTitle: "Beans and Gari",
-            foodImage:
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHllcw0H5cCzTH2-ZU25Lm-SUKcBlwMaCLCstawlIHKJMKTBGF_z_f5rt9tQ5tcpyNBdY&usqp=CAU",
-            price: 50,
-            restaurant: restaurant
-          ),
+              foodTitle: "Beans and Gari",
+              foodImage:
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHllcw0H5cCzTH2-ZU25Lm-SUKcBlwMaCLCstawlIHKJMKTBGF_z_f5rt9tQ5tcpyNBdY&usqp=CAU",
+              price: 50,
+              restaurant: restaurant),
         );
       } else if (restaurant.restaurantName == "Pizza Palace") {
         restaurant.addFood(
           Food(
-            foodTitle: "Pepperoni Pizza",
-            foodImage:
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5ask8c39yQLLJYEXGXsq9ajVwRYjkEPjhJA&s",
-            price: 120,
-            restaurant: restaurant
-          ),
+              foodTitle: "Pepperoni Pizza",
+              foodImage:
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5ask8c39yQLLJYEXGXsq9ajVwRYjkEPjhJA&s",
+              price: 120,
+              restaurant: restaurant),
         );
         restaurant.addFood(
           Food(
@@ -78,5 +78,15 @@ class RestaurantHandler extends ChangeNotifier {
       popularFood.addAll(restaurant.foodList);
     }
     return popularFood;
+  }
+
+  List<CartItem> getCartItems() {
+    List<CartItem> cartItems = [];
+    for (var restaurant in restaurantList) {
+      for (var food in restaurant.foodList){
+        cartItems.add(CartItem(food: food, quantity: 0));
+      }
+    }
+    return cartItems;
   }
 }
