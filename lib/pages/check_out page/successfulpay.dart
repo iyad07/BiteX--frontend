@@ -2,6 +2,8 @@ import 'package:bikex/components/buttons.dart';
 import 'package:flutter/material.dart';
 
 class PaymentSuccessPage extends StatelessWidget {
+  const PaymentSuccessPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

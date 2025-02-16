@@ -8,15 +8,30 @@ TextButton textButton(String label, VoidCallback onClick) => TextButton(
       ),
     );
 
-ElevatedButton elevatedButton(String label, VoidCallback onClick) =>
+ElevatedButton elevatedButton(String label, VoidCallback onClick, ) =>
     ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.orange,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        padding: const EdgeInsets.symmetric(vertical: 24),
+        padding: EdgeInsets.symmetric(vertical: 24),
         minimumSize: const Size(double.infinity, 50),
+      ),
+      onPressed: onClick,
+      child: Text(
+        label,
+        style: TextStyle(color: Colors.white, fontSize: 16),
+      ),
+    );
+ElevatedButton smelevatedButton(String label, VoidCallback onClick, ) =>
+    ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.orange,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        padding: EdgeInsets.symmetric(vertical: 15),
       ),
       onPressed: onClick,
       child: Text(
@@ -42,6 +57,28 @@ ElevatedButton outLinedButton(String label, VoidCallback onClick) =>
         Icons.add,
         color: Colors.orange,
       ),
+      label: Text(
+        label,
+        style: TextStyle(color: Colors.orange, fontSize: 16),
+      ),
+    );
+ElevatedButton smoutLinedButton(String label, VoidCallback onClick, bool hasIcon) =>
+    ElevatedButton.icon(
+      style: OutlinedButton.styleFrom(
+        shadowColor: Colors.transparent,
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(
+              color: Colors.grey[200]!, width: 2,), // Changed border color to orange
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 15),
+      ),
+      onPressed: onClick,
+      icon: hasIcon?Icon(
+        Icons.add,
+        color: Colors.orange,
+      ):null,
       label: Text(
         label,
         style: TextStyle(color: Colors.orange, fontSize: 16),
