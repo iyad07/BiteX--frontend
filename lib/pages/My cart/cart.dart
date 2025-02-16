@@ -1,3 +1,4 @@
+import 'package:bikex/components/buttons.dart';
 import 'package:bikex/components/mycart/cart_item_comp.dart';
 import 'package:bikex/data/restaurant_handler.dart';
 import 'package:flutter/material.dart';
@@ -18,17 +19,7 @@ class _CartPageState extends State<CartPage> {
       builder: (context, value, child) => Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          leading: IconButton(
-            style: IconButton.styleFrom(backgroundColor: Colors.grey[200]),
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-              size: 20,
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
+          leading: backButton(context),
           title: Text(
             'Cart',
             style: TextStyle(color: Colors.black),

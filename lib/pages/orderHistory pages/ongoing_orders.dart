@@ -3,15 +3,14 @@ import 'package:bikex/data/restaurant_handler.dart';
 import 'package:bikex/models/order.dart';
 import 'package:flutter/material.dart';
 
-
-class HistoryOrders extends StatefulWidget {
-  const HistoryOrders({super.key});
+class OngoingOrders extends StatefulWidget {
+  const OngoingOrders({super.key});
 
   @override
-  State<HistoryOrders> createState() => _HistoryOrdersState();
+  State<OngoingOrders> createState() => _OngoingOrdersState();
 }
 
-class _HistoryOrdersState extends State<HistoryOrders> {
+class _OngoingOrdersState extends State<OngoingOrders> {
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -23,7 +22,6 @@ class _HistoryOrdersState extends State<HistoryOrders> {
               totalPrice: 40,
               deliveryAddress: "",
               restaurant: RestaurantHandler().restaurantList[0]),
-              isCompleted: true,
         ),
       ],
     );

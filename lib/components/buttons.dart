@@ -98,3 +98,21 @@ TextButton textButtonIcon(label, onClick, Icon icon) => TextButton.icon(
       ),
       icon: icon,
     );
+
+backButton(context){
+  return Container(
+            margin: EdgeInsets.all(8),
+            decoration:
+                BoxDecoration(shape: BoxShape.circle, color: Colors.grey[200]),
+            child: IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios_rounded,
+                color: Colors.black,
+                size: 15,
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          );
+}

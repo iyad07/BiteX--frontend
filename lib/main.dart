@@ -8,7 +8,7 @@ import 'package:bikex/pages/check_out%20page/add_payment.dart';
 import 'package:bikex/pages/check_out%20page/check_out.dart';
 import 'package:bikex/pages/check_out%20page/successfulpay.dart';
 import 'package:bikex/pages/food_pages/food_pages.dart';
-import 'package:bikex/pages/orderHistory%20pages/order_history.dart';
+import 'package:bikex/pages/orderHistory%20pages/order_list_page.dart';
 import 'package:bikex/pages/restaurant%20_page/restaurant_page.dart';
 import 'package:bikex/pages/tracking%20pages/map.dart';
 import 'package:bikex/pages/user_credential_pages/forgot_password.dart';
