@@ -116,3 +116,26 @@ backButton(context){
             ),
           );
 }
+menuButton(onPressed){
+  return Container(
+            margin: EdgeInsets.all(8),
+            decoration:
+                BoxDecoration(shape: BoxShape.circle, color: Colors.grey[200]),
+            child: IconButton(
+              icon: Icon(
+                Icons.menu_rounded,
+                color: Colors.black,
+                size: 15,
+              ),
+              onPressed: onPressed,
+            ),
+          );
+}
+editButton(onEdit){TextButton(
+              onPressed: onEdit,
+              child: Text(
+                'EDIT ITEMS',
+                style: TextStyle(
+                    color: Colors.orange, fontWeight: FontWeight.bold),
+              ),
+            );}
