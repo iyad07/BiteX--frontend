@@ -1,3 +1,5 @@
+import 'package:bikex/components/buttons.dart';
+import 'package:bikex/components/profile/profile_comp.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -5,9 +7,32 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> firstGroup = [
+      {'title': 'Personal Info', 'icon': Icons.person},
+      {'title': 'Addresses', 'icon': Icons.location_on},
+    ];
+    final List<Map<String, dynamic>> secondGroup = [
+      
+      {'title': 'Cart', 'icon': Icons.shopping_cart},
+      {'title': 'Favourite', 'icon': Icons.favorite},
+      {'title': 'Notifications', 'icon': Icons.notifications},
+      {'title': 'Payment Method', 'icon': Icons.payment},
+      
+    ];
+    final List<Map<String, dynamic>> thirdGroup = [
+      {'title': 'FAQs', 'icon': Icons.help},
+      {'title': 'User Reviews', 'icon': Icons.rate_review},
+      {'title': 'Settings', 'icon': Icons.settings},
+      
+    ];
+    final List<Map<String, dynamic>> fourthGroup = [
+      {'title': 'Log Out', 'icon': Icons.logout},
+    ];
     return Scaffold(
       appBar: AppBar(
+        leading: backButton(context),
         title: Text('Profile'),
+        actions: [menuButton((){})],
       ),
       body: Column(
         children: [
@@ -44,74 +69,27 @@ class ProfilePage extends StatelessWidget {
               ],
             ),
           ),
-          Divider(height: 1, thickness: 1),
           // Menu Options
           Expanded(
-            child: ListView(
-              children: [
-                ListTile(
-                  title: Text('A Personal Info'),
-                  onTap: () {
-                    // Handle tap
-                  },
-                ),
-                ListTile(
-                  title: Text('Addresses'),
-                  onTap: () {
-                    // Handle tap
-                  },
-                ),
-                ListTile(
-                  title: Text('Cart'),
-                  onTap: () {
-                    // Handle tap
-                  },
-                ),
-                ListTile(
-                  title: Text('Favourite'),
-                  onTap: () {
-                    // Handle tap
-                  },
-                ),
-                ListTile(
-                  title: Text('Notifications'),
-                  onTap: () {
-                    // Handle tap
-                  },
-                ),
-                ListTile(
-                  title: Text('Payment Method'),
-                  onTap: () {
-                    // Handle tap
-                  },
-                ),
-                ListTile(
-                  title: Text('FAQs'),
-                  onTap: () {
-                    // Handle tap
-                  },
-                ),
-                ListTile(
-                  title: Text('User Reviews'),
-                  onTap: () {
-                    // Handle tap
-                  },
-                ),
-                ListTile(
-                  title: Text('Settings'),
-                  onTap: () {
-                    // Handle tap
-                  },
-                ),
-                ListTile(
-                  title: Text('Log Out'),
-                  onTap: () {
-                    // Handle tap
-                  },
-                ),
-              ],
-            ),
+            flex: 2,
+            child: profilePageGroup(firstGroup)
           ),
+          SizedBox(height: 16,),
+          Expanded(
+            flex: 4,
+            child: profilePageGroup(secondGroup)
+          ),
+          SizedBox(height: 16,),
+          Expanded(
+            flex: 3,
+            child: profilePageGroup(thirdGroup)
+          ),
+          SizedBox(height: 16,),
+          Expanded(
+            flex: 1,
+            child: profilePageGroup(fourthGroup)
+          ),
+          SizedBox(height: 16,),
         ],
       ),
     );
