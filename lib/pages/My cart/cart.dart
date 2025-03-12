@@ -25,14 +25,7 @@ class _CartPageState extends State<CartPage> {
             style: TextStyle(color: Colors.black),
           ),
           actions: [
-            TextButton(
-              onPressed: widget.onEdit,
-              child: Text(
-                'EDIT ITEMS',
-                style: TextStyle(
-                    color: Colors.orange, fontWeight: FontWeight.bold),
-              ),
-            ),
+            editButton(widget.onEdit)
           ],
           elevation: 0,
         ),
