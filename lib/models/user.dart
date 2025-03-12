@@ -4,7 +4,7 @@ class User {
   final String email;
   final String address;
   final String phoneNumber;
-  final bool isChef;
+ 
 
   User({
     required this.id,
@@ -12,6 +12,5 @@ class User {
     required this.email,
     required this.address,
     required this.phoneNumber,
-    this.isChef = false,
   });
 }
