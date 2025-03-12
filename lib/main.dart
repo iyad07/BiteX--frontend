@@ -9,6 +9,7 @@ import 'package:bikex/pages/check_out%20page/check_out.dart';
 import 'package:bikex/pages/check_out%20page/successfulpay.dart';
 import 'package:bikex/pages/food_pages/food_pages.dart';
 import 'package:bikex/pages/orderHistory%20pages/order_list_page.dart';
+import 'package:bikex/pages/profile%20pages/personal_profile_page.dart';
 import 'package:bikex/pages/profile%20pages/profile_page.dart';
 import 'package:bikex/pages/restaurant%20_page/restaurant_page.dart';
 import 'package:bikex/pages/tracking%20pages/map.dart';
@@ -44,8 +45,9 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Sen',
       ),
       
-      initialRoute: '/profile',
+      initialRoute: '/personal_profile',
       routes: {
+        '/personal_profile':(context)=>PersonalProfilePage(),
         '/profile':(context)=>ProfilePage(),
         '/order_history':(context)=>MyOrdersPage(),
         '/map':(context)=>TrackOrderPage(),
