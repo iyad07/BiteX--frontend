@@ -8,7 +8,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> firstGroup = [
-      {'title': 'Personal Info', 'icon': Icons.person},
+      {'title': 'Personal Info', 'icon': Icons.person, 'onTap':(){Navigator.pushNamed(context, '/personal_profile');}},
       {'title': 'Addresses', 'icon': Icons.location_on},
     ];
     final List<Map<String, dynamic>> secondGroup = [

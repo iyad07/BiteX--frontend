@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Sen',
       ),
       
-      initialRoute: '/personal_profile',
+      initialRoute: '/profile',
       routes: {
         '/personal_profile':(context)=>PersonalProfilePage(),
         '/profile':(context)=>ProfilePage(),
