@@ -1,6 +1,6 @@
 import 'package:bikex/components/buttons.dart';
-import 'package:bikex/pages/orderHistory%20pages/ongoing_orders.dart';
-import 'package:bikex/pages/orderHistory%20pages/order_history.dart';
+import 'package:bikex/screens/user_pages/orderHistory%20pages/ongoing_orders.dart';
+import 'package:bikex/screens/user_pages/orderHistory%20pages/order_history.dart';
 import 'package:flutter/material.dart';
 
 class MyOrdersPage extends StatelessWidget {

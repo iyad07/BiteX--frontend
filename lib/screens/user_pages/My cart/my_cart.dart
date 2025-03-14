@@ -1,7 +1,7 @@
 import 'package:bikex/components/buttons.dart';
 import 'package:bikex/components/cred_textfields.dart';
-import 'package:bikex/pages/My%20cart/cart.dart';
-import 'package:bikex/pages/My%20cart/edit_cart.dart';
+import 'package:bikex/screens/user_pages/My%20cart/cart.dart';
+import 'package:bikex/screens/user_pages/My%20cart/edit_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

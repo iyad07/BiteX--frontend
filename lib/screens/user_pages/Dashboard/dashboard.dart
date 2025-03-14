@@ -3,7 +3,7 @@ import 'package:bikex/components/dashboard/category_card.dart';
 import 'package:bikex/components/dashboard/restaurant_card.dart';
 import 'package:bikex/components/dashboard/search_bar.dart';
 import 'package:bikex/data/restaurant_handler.dart';
-import 'package:bikex/pages/Dashboard/search_page.dart';
+import 'package:bikex/screens/user_pages/Dashboard/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
