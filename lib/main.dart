@@ -1,6 +1,7 @@
 import 'package:bikex/data/restaurant_handler.dart';
 import 'package:bikex/models/food.dart';
 import 'package:bikex/models/restaurant.dart';
+import 'package:bikex/screens/chef_pages/dashboard_screen.dart';
 import 'package:bikex/screens/user_pages/Dashboard/dashboard.dart';
 import 'package:bikex/screens/user_pages/Dashboard/search_page.dart';
 import 'package:bikex/screens/user_pages/My%20cart/my_cart.dart';
@@ -45,8 +46,9 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Sen',
       ),
       
-      initialRoute: '/profile',
+      initialRoute: '/chef_dashboard',
       routes: {
+        '/chef_dashboard': (context) => ChefDashboard(),
         '/personal_profile':(context)=>PersonalProfilePage(),
         '/profile':(context)=>ProfilePage(),
         '/order_history':(context)=>MyOrdersPage(),

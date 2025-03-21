@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 
-class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
+class ChefDashboard extends StatelessWidget {
+  const ChefDashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -356,7 +356,7 @@ class StatisticCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 180,
+      width: 185,
       height: 120,
       decoration: BoxDecoration(
         color: Colors.white,
