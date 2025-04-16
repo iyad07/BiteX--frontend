@@ -131,7 +131,7 @@ menuButton(onPressed){
             ),
           );
 }
-editButton(onEdit){TextButton(
+TextButton editButton(onEdit){return TextButton(
               onPressed: onEdit,
               child: Text(
                 'EDIT ITEMS',

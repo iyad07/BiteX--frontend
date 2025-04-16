@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Sen',
       ),
       
-      initialRoute: '/chef_dashboard',
+      initialRoute: '/dashboard',
       routes: {
         '/chef_dashboard': (context) => ChefDashboard(),
         '/personal_profile':(context)=>PersonalProfilePage(),

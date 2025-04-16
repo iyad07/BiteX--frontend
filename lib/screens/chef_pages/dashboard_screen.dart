@@ -113,11 +113,14 @@ class ChefDashboard extends StatelessWidget {
                               value: 'Daily',
                               items: [
                                 DropdownMenuItem(
-                                    child: Text('Daily'), value: 'Daily'),
+                                    value: 'Daily',
+                                    child: Text('Daily')),
                                 DropdownMenuItem(
-                                    child: Text('Weekly'), value: 'Weekly'),
+                                    value: 'Weekly',
+                                    child: Text('Weekly')),
                                 DropdownMenuItem(
-                                    child: Text('Monthly'), value: 'Monthly'),
+                                    value: 'Monthly',
+                                    child: Text('Monthly')),
                               ],
                               onChanged: (value) {},
                             ),
@@ -132,7 +135,7 @@ class ChefDashboard extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 16),
-                    Container(
+                    SizedBox(
                       height: 80,
                       child: LineChart(
                         LineChartData(
