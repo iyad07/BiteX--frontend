@@ -71,7 +71,14 @@ class RestaurantHandler extends ChangeNotifier {
       }
     }
   }
+  List<CartItem> cartItems = [];
 
+  //general methods
+  void addtocart(){}
+
+  void signup(){}
+
+  //getter methods
   List<Food> getAllFood() {
     List<Food> popularFood = [];
     for (var restaurant in restaurantList) {
@@ -79,9 +86,8 @@ class RestaurantHandler extends ChangeNotifier {
     }
     return popularFood;
   }
-
   List<CartItem> getCartItems() {
-    List<CartItem> cartItems = [];
+    
     for (var restaurant in restaurantList) {
       for (var food in restaurant.foodList){
         cartItems.add(CartItem(food: food, quantity: 0));

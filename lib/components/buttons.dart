@@ -116,7 +116,7 @@ backButton(context){
             ),
           );
 }
-menuButton(onPressed){
+menuButton(context){
   return Container(
             margin: EdgeInsets.all(8),
             decoration:
@@ -127,7 +127,7 @@ menuButton(onPressed){
                 color: Colors.black,
                 size: 15,
               ),
-              onPressed: onPressed,
+              onPressed: (){Navigator.pushNamed(context, '/profile');},
             ),
           );
 }

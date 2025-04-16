@@ -32,7 +32,7 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(
         leading: backButton(context),
         title: Text('Profile'),
-        actions: [menuButton((){})],
+        
       ),
       body: Column(
         children: [

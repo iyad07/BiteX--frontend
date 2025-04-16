@@ -1,4 +1,5 @@
 import 'package:bikex/data/restaurant_handler.dart';
+import 'package:bikex/data/user_provider.dart';
 import 'package:bikex/models/food.dart';
 import 'package:bikex/models/restaurant.dart';
 import 'package:bikex/screens/chef_pages/dashboard_screen.dart';
@@ -60,7 +61,7 @@ class MyApp extends StatelessWidget {
         '/food_page':(context)=> FoodPages(food: ModalRoute.of(context)!.settings.arguments as Food),
         '/restaurant': (context) => RestaurantPage(restaurant: ModalRoute.of(context)!.settings.arguments as Restaurant),
         '/search': (context) => SearchPage(),
-        '/dashboard': (context) => RestaurantDashboard(),
+        '/dashboard': (context) => RestaurantDashboard( loggedInUser: UserProvider().demoUser(),),
         '/onboarding1': (context) => OnboardingScreen(),
         '/login': (context) => const LoginPage(),
         '/signup': (context) => const SignUpPage(),

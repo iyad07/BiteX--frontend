@@ -7,6 +7,7 @@ class PaymentSuccessPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(leading: backButton(context),),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -42,7 +43,9 @@ class PaymentSuccessPage extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(child: Center(child: elevatedButton("TRACK ORDER", () {})))
+            Expanded(child: Center(child: elevatedButton("TRACK ORDER", () {
+              Navigator.pushNamed(context, '/map');
+            })))
           ],
         ),
       ),

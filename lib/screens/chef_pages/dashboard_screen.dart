@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 
-class ChefDashboard extends StatelessWidget {
+class ChefDashboard extends StatefulWidget {
   const ChefDashboard({super.key});
+  
 
+  @override
+  State<ChefDashboard> createState() => _ChefDashboardState();
+}
+
+class _ChefDashboardState extends State<ChefDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

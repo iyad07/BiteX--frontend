@@ -50,17 +50,16 @@ class _CheckOutPageState extends State<CheckOutPage> {
               ],
             ),
             SizedBox(height: 16),
-            elevatedButton("PAY & CONFIRM", () {})
+            elevatedButton("PAY & CONFIRM", () {
+              Navigator.pushNamed(context, '/payment_successful');
+            })
           ],
         ),
       ),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {},
-        ),
+        leading: backButton(context),
         title: Text(
           'Payment',
           style: TextStyle(color: Colors.black),

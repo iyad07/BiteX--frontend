@@ -3,12 +3,14 @@ import 'package:bikex/components/dashboard/category_card.dart';
 import 'package:bikex/components/dashboard/restaurant_card.dart';
 import 'package:bikex/components/dashboard/search_bar.dart';
 import 'package:bikex/data/restaurant_handler.dart';
+import 'package:bikex/models/user.dart';
 import 'package:bikex/screens/user_pages/Dashboard/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class RestaurantDashboard extends StatefulWidget {
-  const RestaurantDashboard({super.key});
+  final User loggedInUser;
+  const RestaurantDashboard({super.key,required  this.loggedInUser});
 
   @override
   RestaurantDashboardState createState() => RestaurantDashboardState();
@@ -25,14 +27,7 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           leadingWidth: 56,
-          leading: Container(
-            margin: EdgeInsets.only(left: 16),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.grey[200],
-            ),
-            child: Icon(Icons.menu_rounded),
-          ),
+          leading: menuButton(context),
           backgroundColor: Colors.white,
           elevation: 0,
           title: Column(
@@ -48,7 +43,7 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
               Row(
                 children: [
                   Text(
-                    'Halal Lab office',
+                    widget.loggedInUser.address,
                     style: TextStyle(
                         color: Colors.grey,
                         fontSize: 16,
@@ -119,7 +114,7 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
                 child: Row(
                   children: [
                     Text(
-                      'Hey Halal, ',
+                      'Hey ${widget.loggedInUser.name}, ',
                       style: TextStyle(
                         fontSize: 18,
                       ),
