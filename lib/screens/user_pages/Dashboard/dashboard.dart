@@ -19,9 +19,10 @@ class RestaurantDashboard extends StatefulWidget {
 class RestaurantDashboardState extends State<RestaurantDashboard> {
   // Define any dynamic state variables here (e.g., selected category, list of restaurants, etc.)
   String selectedCategory = 'All';
-
+  
   @override
   Widget build(BuildContext context) {
+    String selectedAddress = widget.loggedInUser.address[0];
     return Consumer<RestaurantHandler>(
       builder: (context, value, child) => Scaffold(
         backgroundColor: Colors.white,
@@ -43,7 +44,7 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
               Row(
                 children: [
                   Text(
-                    widget.loggedInUser.address,
+                    widget.loggedInUser.address[0],
                     style: TextStyle(
                         color: Colors.grey,
                         fontSize: 16,
@@ -52,8 +53,18 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
                   DropdownButton(
                     icon: Icon(Icons.arrow_drop_down_rounded,
                         color: Colors.black),
-                    items: [],
-                    onChanged: (value) {},
+                    items: widget.loggedInUser.address.map((address) {
+                      return DropdownMenuItem(
+                        value: address,
+                        child: Text(address),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedAddress = value as String;
+                      });
+                    },
+                    value: selectedAddress,
                   )
                 ],
               ),

@@ -2,7 +2,7 @@ class User {
   final String id;
   final String name;
   final String email;
-  final String address;
+  late List<String> address;
   final String phoneNumber;
  
 

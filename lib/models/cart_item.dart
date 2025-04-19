@@ -2,7 +2,7 @@ import 'package:bikex/models/food.dart';
 
 class CartItem {
   final Food food; // Reference to the food item
-  late final int quantity;
+  late int quantity;
 
   CartItem({
     required this.food,

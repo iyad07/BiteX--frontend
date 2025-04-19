@@ -76,7 +76,10 @@ class RestaurantHandler extends ChangeNotifier {
   //general methods
   void addtocart(){}
 
-  void signup(){}
+  void placeorder(){}
+
+  void payment(){}
+
 
   //getter methods
   List<Food> getAllFood() {
