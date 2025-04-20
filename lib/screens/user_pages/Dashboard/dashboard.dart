@@ -1,5 +1,5 @@
 import 'package:bikex/components/buttons.dart';
-import 'package:bikex/components/dashboard/category_card.dart';
+//import 'package:bikex/components/dashboard/category_card.dart';
 import 'package:bikex/components/dashboard/restaurant_card.dart';
 import 'package:bikex/components/dashboard/search_bar.dart';
 import 'package:bikex/data/restaurant_handler.dart';
@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 
 class RestaurantDashboard extends StatefulWidget {
   final User loggedInUser;
-  const RestaurantDashboard({super.key,required  this.loggedInUser});
+  const RestaurantDashboard({super.key, required this.loggedInUser});
 
   @override
   RestaurantDashboardState createState() => RestaurantDashboardState();
@@ -19,10 +19,19 @@ class RestaurantDashboard extends StatefulWidget {
 class RestaurantDashboardState extends State<RestaurantDashboard> {
   // Define any dynamic state variables here (e.g., selected category, list of restaurants, etc.)
   String selectedCategory = 'All';
-  
+
+  String? selectedAddress; // Make it nullable
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.loggedInUser.address.isNotEmpty) {
+      selectedAddress = widget.loggedInUser.address.first;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    String selectedAddress = widget.loggedInUser.address[0];
     return Consumer<RestaurantHandler>(
       builder: (context, value, child) => Scaffold(
         backgroundColor: Colors.white,
@@ -43,28 +52,30 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
               ),
               Row(
                 children: [
-                  Text(
+                  /*Text(
                     widget.loggedInUser.address[0],
                     style: TextStyle(
                         color: Colors.grey,
                         fontSize: 16,
                         fontWeight: FontWeight.w400),
-                  ),
-                  DropdownButton(
+                  ),*/
+                  DropdownButton<String>(
+                    value: selectedAddress,
                     icon: Icon(Icons.arrow_drop_down_rounded,
                         color: Colors.black),
                     items: widget.loggedInUser.address.map((address) {
-                      return DropdownMenuItem(
+                      return DropdownMenuItem<String>(
                         value: address,
                         child: Text(address),
                       );
                     }).toList(),
                     onChanged: (value) {
-                      setState(() {
-                        selectedAddress = value as String;
-                      });
+                      if (value != null) {
+                        setState(() {
+                          selectedAddress = value;
+                        });
+                      }
                     },
-                    value: selectedAddress,
                   )
                 ],
               ),
@@ -131,7 +142,7 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
                       ),
                     ),
                     Text(
-                      'Good Afternoon!',
+                      'Good day!',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
@@ -150,24 +161,24 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
                       },
                       child: searchBar(enabled: false))),
               SizedBox(height: 8),
-              Container(
+              /*Container(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'All Categories',
+                      'Categories',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                     ),
-                    textButtonIcon(
+                    /*textButtonIcon(
                       "See All",
                       () {},
                       Icon(
                         Icons.arrow_forward_ios_rounded,
                         color: Colors.black,
                       ),
-                    )
+                    )*/
                   ],
                 ),
               ),
@@ -185,13 +196,13 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
                         onTap: () => setState(() => selectedCategory = 'All'),
                       ),
                       CategoryChip(
-                        label: 'Hot Dog',
+                        label: 'Local dishes',
                         isSelected: selectedCategory == 'Hot Dog',
                         onTap: () =>
                             setState(() => selectedCategory = 'Hot Dog'),
                       ),
                       CategoryChip(
-                        label: 'Burger',
+                        label: 'Foreign dishes',
                         isSelected: selectedCategory == 'Burger',
                         onTap: () =>
                             setState(() => selectedCategory = 'Burger'),
@@ -204,7 +215,7 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
                     ],
                   ),
                 ),
-              ),
+              ),*/
               SizedBox(height: 8),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16),
@@ -214,16 +225,9 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
                     Text(
                       'Open Restaurants',
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                     ),
-                    textButtonIcon(
-                      "See All",
-                      () {},
-                      Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: Colors.black,
-                      ),
-                    )
+                    
                   ],
                 ),
               ),

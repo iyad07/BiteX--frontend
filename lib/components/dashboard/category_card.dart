@@ -32,13 +32,7 @@ class CategoryChip extends StatelessWidget {
           labelStyle: TextStyle(
             color: Colors.black,
           ),
-          avatar: Container(
-            width: 45,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.grey,
-            ),
-          ),
+          
         ),
       ),
     );
