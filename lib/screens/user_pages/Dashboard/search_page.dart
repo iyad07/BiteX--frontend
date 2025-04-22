@@ -1,5 +1,5 @@
 import 'package:bikex/components/dashboard/search_bar.dart';
-import 'package:bikex/components/search_page/keyword_chip.dart';
+//import 'package:bikex/components/search_page/keyword_chip.dart';
 import 'package:bikex/components/search_page/pop_food_tile.dart';
 import 'package:bikex/components/search_page/sug_res__tile.dart';
 import 'package:bikex/data/restaurant_handler.dart';
@@ -42,42 +42,47 @@ class _SearchPageState extends State<SearchPage> {
             style: TextStyle(color: Colors.black),
           ),
           actions: [
-            Stack(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(6),
-                  margin: EdgeInsets.only(right: 16),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.black,
-                  ),
-                  child: Icon(
-                    Icons.shopping_bag_outlined,
-                    color: Colors.white,
-                  ),
-                ),
-                Positioned(
-                  right: 16,
-                  top: 0,
-                  child: Container(
-                    width: 20,
-                    height: 20,
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/my_cart');
+              },
+              child: Stack(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(6),
+                    margin: EdgeInsets.only(right: 16),
                     decoration: BoxDecoration(
-                      color: Colors.red,
                       shape: BoxShape.circle,
+                      color: Colors.black,
                     ),
-                    child: Center(
-                      child: Text(
-                        '2',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold),
+                    child: Icon(
+                      Icons.shopping_bag_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Positioned(
+                    right: 16,
+                    top: 0,
+                    child: Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Text(
+                          '2',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
@@ -88,13 +93,12 @@ class _SearchPageState extends State<SearchPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Search Bar
-                searchBar(
-                ),
+                searchBar(),
 
                 SizedBox(height: 20),
 
                 // Recent Keywords
-                Container(
+                /*Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
                     'Recent Keywords',
@@ -115,7 +119,7 @@ class _SearchPageState extends State<SearchPage> {
                       KeywordChip(label: 'Sandwich'),
                     ],
                   ),
-                ),
+                ),*/
                 SizedBox(height: 20),
 
                 // Suggested Restaurants
@@ -152,15 +156,19 @@ class _SearchPageState extends State<SearchPage> {
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 4.7/4,
+                    childAspectRatio: 4.7 / 4,
                     crossAxisSpacing: 40,
                     mainAxisSpacing: 10,
                   ),
-                  itemCount: value.getAllFood().length, // Adjust this based on your data
+                  itemCount: value
+                      .getAllFood()
+                      .length, // Adjust this based on your data
                   itemBuilder: (context, index) {
                     return PopularFoodTile(
                       food: value.getAllFood()[index],
-                      restaurant: value.getAllFood()[index].restaurant!, // Assuming Restaurant() is a valid default value
+                      restaurant: value
+                          .getAllFood()[index]
+                          .restaurant!, // Assuming Restaurant() is a valid default value
                     );
                   },
                 ),
