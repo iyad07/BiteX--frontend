@@ -112,7 +112,7 @@ class RestaurantDashboardState extends State<RestaurantDashboard> {
                       ),
                       child: Center(
                         child: Text(
-                          '2',
+                          '${value.cartItems.length}',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 10,

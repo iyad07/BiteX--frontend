@@ -24,10 +24,11 @@ class _FoodPagesState extends State<FoodPages> {
   }
   @override
   Widget build(BuildContext context) {
-
-    return Scaffold(
-      bottomSheet: Padding(
-        padding: const EdgeInsets.all(16),
+    return Consumer<RestaurantHandler>(
+      builder: (context, value, child) {
+        return Scaffold(
+          bottomSheet: Padding(
+            padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -144,7 +145,7 @@ class _FoodPagesState extends State<FoodPages> {
                       ),
                       child: Center(
                         child: Text(
-                          '2',
+                          value.cartItems.length.toString(),
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 10,
@@ -276,5 +277,6 @@ class _FoodPagesState extends State<FoodPages> {
         ),
       ),
     );
-  }  
+    });  
+}
 }

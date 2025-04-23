@@ -1,4 +1,6 @@
+//import 'package:bikex/data/restaurant_handler.dart';
 import 'package:flutter/material.dart';
+//import 'package:provider/provider.dart';
 
 TextButton textButton(String label, VoidCallback onClick) => TextButton(
       onPressed: onClick,
@@ -156,47 +158,5 @@ TextButton editButton(onEdit) {
   );
 }
 
-GestureDetector cartButton(context,total) {
-  return GestureDetector(
-    onTap: () {
-      Navigator.pushNamed(context, '/my_cart');
-    },
-    child: Stack(
-      children: [
-        Container(
-          padding: EdgeInsets.all(6),
-          margin: EdgeInsets.only(right: 16),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.black,
-          ),
-          child: Icon(
-            Icons.shopping_bag_outlined,
-            color: Colors.white,
-          ),
-        ),
-        Positioned(
-          right: 16,
-          top: 0,
-          child: Container(
-            width: 30,
-            height: 30,
-            decoration: BoxDecoration(
-              color: Colors.red,
-              shape: BoxShape.circle,
-            ),
-            child: Center(
-              child: Text(
-                total.toString(),
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
-}
+
+

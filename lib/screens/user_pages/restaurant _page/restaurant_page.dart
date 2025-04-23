@@ -31,7 +31,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
   @override
   Widget build(BuildContext context) {
     return Consumer<RestaurantHandler>(
-        builder: (context, restaurantHandler, child) {
+        builder: (context, value, child) {
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -81,7 +81,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                       ),
                       child: Center(
                         child: Text(
-                          '2',
+                          value.cartItems.length.toString(),
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 10,
