@@ -1,7 +1,7 @@
 import 'package:bikex/components/buttons.dart';
 //import 'package:bikex/components/dashboard/category_card.dart';
 import 'package:bikex/components/dashboard/restaurant_card.dart';
-import 'package:bikex/components/dashboard/search_bar.dart';
+import 'package:bikex/components/dashboard/searchbar.dart';
 import 'package:bikex/data/restaurant_handler.dart';
 import 'package:bikex/models/user.dart';
 import 'package:bikex/screens/user_pages/Dashboard/search_page.dart';

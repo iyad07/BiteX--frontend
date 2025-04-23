@@ -17,7 +17,7 @@ class FilterFood extends StatelessWidget {
             style: TextStyle(fontSize: 17),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {Navigator.pop(context);},
             icon: Icon(Icons.close_rounded),
             style: IconButton.styleFrom(backgroundColor: Colors.grey[100]),
           )
