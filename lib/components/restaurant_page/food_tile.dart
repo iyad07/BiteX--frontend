@@ -6,11 +6,13 @@ class FoodTile extends StatelessWidget {
   final Food food;
   final Restaurant restaurant;
   final Function onTap;
+  final Function onaddTap;
   const FoodTile(
       {super.key,
       required this.food,
       required this.restaurant,
-      required this.onTap});
+      required this.onTap,
+      required this.onaddTap});
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +76,7 @@ class FoodTile extends StatelessWidget {
                                 height: 30,
                                 width: 30,
                                 child: IconButton(
-                                  onPressed: () {},
+                                  onPressed: () => onaddTap(),
                                   style: IconButton.styleFrom(
                                     foregroundColor: Colors.white,
                                     backgroundColor: Colors.orange,

@@ -1,4 +1,3 @@
-
 import 'package:bikex/models/cart_item.dart';
 import 'package:bikex/models/food.dart';
 import 'package:bikex/models/restaurant.dart';
@@ -72,15 +71,56 @@ class RestaurantHandler extends ChangeNotifier {
     }
   }
   List<CartItem> cartItems = [];
+  bool isAlreadyInCart = false;
 
-  //general methods
-  void addtocart(){}
+  void addToCart(Food food) {
+    // Check if the food item already exists in the cart
+    isAlreadyInCart = cartItems.any((item) => item.food == food);
+    if (!isAlreadyInCart) {
+      cartItems.add(CartItem(food: food, quantity: 1));
 
-  void placeorder(){}
+      notifyListeners(); // Notify listeners that the cart has changed
+    } else {
+      notifyListeners();
+    }
+  }
 
-  void payment(){}
+  void increaseQuantity(Food food) {
+    for (var item in cartItems) {
+      if (item.food == food) {
+        item.quantity++;
+        notifyListeners(); // 🔥 This triggers a rebuild
+        break;
+      }
+    }
+  }
 
+  void decreaseQuantity(Food food) {
+    for (var item in cartItems) {
+      if (item.food == food && item.quantity > 1) {
+        item.quantity--;
+        notifyListeners();
+        break;
+      }
+    }
+  }
 
+  void removeFromCart(Food food) {
+    cartItems.removeWhere((element) => element.food == food);
+    notifyListeners();
+  }
+
+  double getTotal() {
+    double total = 0;
+    for (var item in cartItems) {
+      total += item.food.price * item.quantity;
+    }
+    return total;
+  }
+
+  void placeorder() {}
+
+  void payment() {}
   //getter methods
   List<Food> getAllFood() {
     List<Food> popularFood = [];
@@ -89,13 +129,8 @@ class RestaurantHandler extends ChangeNotifier {
     }
     return popularFood;
   }
+
   List<CartItem> getCartItems() {
-    
-    for (var restaurant in restaurantList) {
-      for (var food in restaurant.foodList){
-        cartItems.add(CartItem(food: food, quantity: 0));
-      }
-    }
     return cartItems;
   }
 }

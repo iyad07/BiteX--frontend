@@ -1,6 +1,9 @@
 import 'package:bikex/components/food_page/ingred_icon.dart';
+import 'package:bikex/data/restaurant_handler.dart';
 import 'package:bikex/models/food.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 
 class FoodPages extends StatefulWidget {
   final Food food;
@@ -10,9 +13,18 @@ class FoodPages extends StatefulWidget {
   State<FoodPages> createState() => _FoodPagesState();
 }
 
-class _FoodPagesState extends State<FoodPages> {
+class _FoodPagesState extends State<FoodPages> { 
+    void _showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       bottomSheet: Padding(
         padding: const EdgeInsets.all(16),
@@ -23,13 +35,13 @@ class _FoodPagesState extends State<FoodPages> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "\$32",
+                  "\$${widget.food.price}",
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Row(
+                /*Row(
                   children: [
                     IconButton(
                       icon: Icon(Icons.remove),
@@ -47,12 +59,22 @@ class _FoodPagesState extends State<FoodPages> {
                       onPressed: () {},
                     ),
                   ],
-                ),
+                ),*/
               ],
             ),
             SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Provider.of<RestaurantHandler>(context, listen: false)
+                    .addToCart(widget.food);
+                                if (Provider.of<RestaurantHandler>(context, listen: false)
+                      .isAlreadyInCart) {
+                    _showSnackBar(context, "Item already in cart");
+                  } else {
+                    _showSnackBar(context, "Added to cart");
+                  }
+
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.orange,
                 foregroundColor: Colors.white,
@@ -91,17 +113,50 @@ class _FoodPagesState extends State<FoodPages> {
             Navigator.pop(context);
           },
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.more_horiz,
+                 actions: [
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/my_cart');
+              },
+              child: Stack(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(6),
+                    margin: EdgeInsets.only(right: 16),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.black,
+                    ),
+                    child: Icon(
+                      Icons.shopping_bag_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Positioned(
+                    right: 16,
+                    top: 0,
+                    child: Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Text(
+                          '2',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            style: IconButton.styleFrom(backgroundColor: Colors.grey[100]),
-            onPressed: () {
-              // More options logic
-            },
-          ),
-        ],
+          ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -150,9 +205,8 @@ class _FoodPagesState extends State<FoodPages> {
                 ),
               ],
             ),
-
             const SizedBox(height: 16),
-
+    
             // food Details
             Text(
               widget.food.foodTitle,
@@ -167,7 +221,7 @@ class _FoodPagesState extends State<FoodPages> {
               style: TextStyle(fontSize: 14, color: Colors.grey),
             ),
             const SizedBox(height: 16),
-
+    
             // Ratings and Info
             Row(
               children: [
@@ -222,7 +276,5 @@ class _FoodPagesState extends State<FoodPages> {
         ),
       ),
     );
-  }
-
-  
+  }  
 }

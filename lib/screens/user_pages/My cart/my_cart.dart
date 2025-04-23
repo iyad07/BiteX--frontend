@@ -1,3 +1,4 @@
+import 'package:bikex/data/restaurant_handler.dart';
 import 'package:bikex/components/buttons.dart';
 import 'package:bikex/components/cred_textfields.dart';
 import 'package:bikex/screens/user_pages/My%20cart/cart.dart';
@@ -25,7 +26,7 @@ class _MyCartState extends State<MyCart> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer(
+    return Consumer<RestaurantHandler>(
       builder: (context, value, child) => Scaffold(
         bottomSheet: Padding(
           padding: EdgeInsets.all(16),
@@ -49,23 +50,31 @@ class _MyCartState extends State<MyCart> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'TOTAL:',
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400),
+                  Row(
+                    children: [
+                      Text(
+                        'TOTAL:  ',
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      Text(
+                        '\$${value.getTotal().toStringAsFixed(2)}', // Display total with dollar sign and 2 decimal places
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
-                  TextButton(
+                  /*TextButton(
                     onPressed: () {},
                     child: Text(
                       'Breakdown >',
                       style: TextStyle(color: Colors.orange),
                     ),
-                  ),
+                  ),*/
                 ],
               ),
-              SizedBox(height: 8),
+              SizedBox(height: 12),
               elevatedButton("PLACE ORDER", () {
                 Navigator.pushNamed(context, '/check_out');
               }),

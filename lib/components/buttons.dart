@@ -8,7 +8,10 @@ TextButton textButton(String label, VoidCallback onClick) => TextButton(
       ),
     );
 
-ElevatedButton elevatedButton(String label, VoidCallback onClick, ) =>
+ElevatedButton elevatedButton(
+  String label,
+  VoidCallback onClick,
+) =>
     ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.orange,
@@ -24,7 +27,10 @@ ElevatedButton elevatedButton(String label, VoidCallback onClick, ) =>
         style: TextStyle(color: Colors.white, fontSize: 16),
       ),
     );
-ElevatedButton smelevatedButton(String label, VoidCallback onClick, ) =>
+ElevatedButton smelevatedButton(
+  String label,
+  VoidCallback onClick,
+) =>
     ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.orange,
@@ -47,7 +53,9 @@ ElevatedButton outLinedButton(String label, VoidCallback onClick) =>
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
           side: BorderSide(
-              color: Colors.grey[200]!, width: 2,), // Changed border color to orange
+            color: Colors.grey[200]!,
+            width: 2,
+          ), // Changed border color to orange
         ),
         padding: const EdgeInsets.symmetric(vertical: 24),
         minimumSize: const Size(double.infinity, 50),
@@ -62,7 +70,8 @@ ElevatedButton outLinedButton(String label, VoidCallback onClick) =>
         style: TextStyle(color: Colors.orange, fontSize: 16),
       ),
     );
-ElevatedButton smoutLinedButton(String label, VoidCallback onClick, bool hasIcon) =>
+ElevatedButton smoutLinedButton(
+        String label, VoidCallback onClick, bool hasIcon) =>
     ElevatedButton.icon(
       style: OutlinedButton.styleFrom(
         shadowColor: Colors.transparent,
@@ -70,15 +79,19 @@ ElevatedButton smoutLinedButton(String label, VoidCallback onClick, bool hasIcon
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
           side: BorderSide(
-              color: Colors.grey[200]!, width: 2,), // Changed border color to orange
+            color: Colors.grey[200]!,
+            width: 2,
+          ), // Changed border color to orange
         ),
         padding: const EdgeInsets.symmetric(vertical: 15),
       ),
       onPressed: onClick,
-      icon: hasIcon?Icon(
-        Icons.add,
-        color: Colors.orange,
-      ):null,
+      icon: hasIcon
+          ? Icon(
+              Icons.add,
+              color: Colors.orange,
+            )
+          : null,
       label: Text(
         label,
         style: TextStyle(color: Colors.orange, fontSize: 16),
@@ -99,43 +112,91 @@ TextButton textButtonIcon(label, onClick, Icon icon) => TextButton.icon(
       icon: icon,
     );
 
-backButton(context){
+backButton(context) {
   return Container(
-            margin: EdgeInsets.all(8),
-            decoration:
-                BoxDecoration(shape: BoxShape.circle, color: Colors.grey[200]),
-            child: IconButton(
-              icon: Icon(
-                Icons.arrow_back_ios_rounded,
-                color: Colors.black,
-                size: 15,
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          );
+    margin: EdgeInsets.all(8),
+    decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey[200]),
+    child: IconButton(
+      icon: Icon(
+        Icons.arrow_back_ios_rounded,
+        color: Colors.black,
+        size: 15,
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    ),
+  );
 }
-menuButton(context){
+
+menuButton(context) {
   return Container(
-            margin: EdgeInsets.all(8),
-            decoration:
-                BoxDecoration(shape: BoxShape.circle, color: Colors.grey[200]),
-            child: IconButton(
-              icon: Icon(
-                Icons.menu_rounded,
-                color: Colors.black,
-                size: 15,
-              ),
-              onPressed: (){Navigator.pushNamed(context, '/profile');},
-            ),
-          );
+    margin: EdgeInsets.all(8),
+    decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey[200]),
+    child: IconButton(
+      icon: Icon(
+        Icons.menu_rounded,
+        color: Colors.black,
+        size: 15,
+      ),
+      onPressed: () {
+        Navigator.pushNamed(context, '/profile');
+      },
+    ),
+  );
 }
-TextButton editButton(onEdit){return TextButton(
-              onPressed: onEdit,
+
+TextButton editButton(onEdit) {
+  return TextButton(
+    onPressed: onEdit,
+    child: Text(
+      'EDIT ITEMS',
+      style: TextStyle(color: Colors.orange, fontWeight: FontWeight.bold),
+    ),
+  );
+}
+
+GestureDetector cartButton(context,total) {
+  return GestureDetector(
+    onTap: () {
+      Navigator.pushNamed(context, '/my_cart');
+    },
+    child: Stack(
+      children: [
+        Container(
+          padding: EdgeInsets.all(6),
+          margin: EdgeInsets.only(right: 16),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.black,
+          ),
+          child: Icon(
+            Icons.shopping_bag_outlined,
+            color: Colors.white,
+          ),
+        ),
+        Positioned(
+          right: 16,
+          top: 0,
+          child: Container(
+            width: 30,
+            height: 30,
+            decoration: BoxDecoration(
+              color: Colors.red,
+              shape: BoxShape.circle,
+            ),
+            child: Center(
               child: Text(
-                'EDIT ITEMS',
+                total.toString(),
                 style: TextStyle(
-                    color: Colors.orange, fontWeight: FontWeight.bold),
+                    color: Colors.white,
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold),
               ),
-            );}
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
