@@ -113,7 +113,7 @@ class _MyCartState extends State<MyCart> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text("Select Delivery Address"),
-          content: Container(
+          content: SizedBox(
             width: double.maxFinite,
             child: ListView.builder(
               shrinkWrap: true,
