@@ -1,5 +1,4 @@
 import 'package:bikex/data/restaurant_handler.dart';
-import 'package:bikex/data/user_provider.dart';
 import 'package:bikex/models/food.dart';
 import 'package:bikex/models/restaurant.dart';
 import 'package:bikex/screens/chef_pages/dashboard_screen.dart';
@@ -20,10 +19,17 @@ import 'package:bikex/screens/user_pages/user_credential_pages/login.dart';
 import 'package:bikex/screens/user_pages/onboarding%20screens/onboarding_screen.dart';
 import 'package:bikex/screens/user_pages/user_credential_pages/signup.dart';
 import 'package:bikex/screens/user_pages/user_credential_pages/verification.dart';
+import 'package:firebase_auth/firebase_auth.dart' as fb;
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     MultiProvider(
       providers: [
@@ -39,29 +45,40 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
       title: 'BikeX',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Sen',
       ),
-      
-      initialRoute: '/dashboard',
+      home: StreamBuilder<fb.User?>(
+        stream: fb.FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasData) {
+            return const RestaurantDashboard();
+          }
+          return const LoginPage();
+        },
+      ),
       routes: {
         '/chef_dashboard': (context) => ChefDashboard(),
-        '/personal_profile':(context)=>PersonalProfilePage(),
-        '/profile':(context)=>ProfilePage(),
-        '/order_history':(context)=>MyOrdersPage(),
-        '/map':(context)=>TrackOrderPage(),
-        '/payment_successful': (context)=> PaymentSuccessPage(),
-        '/add_payment':(context)=> AddCardPage(),
-        '/check_out':(context)=>CheckOutPage(hasCard: true,),
-        '/my_cart':(context)=>MyCart(),
-        '/food_page':(context)=> FoodPages(food: ModalRoute.of(context)!.settings.arguments as Food),
-        '/restaurant': (context) => RestaurantPage(restaurant: ModalRoute.of(context)!.settings.arguments as Restaurant),
+        '/personal_profile': (context) => PersonalProfilePage(),
+        '/profile': (context) => ProfilePage(),
+        '/order_history': (context) => MyOrdersPage(),
+        '/map': (context) => TrackOrderPage(),
+        '/payment_successful': (context) => PaymentSuccessPage(),
+        '/add_payment': (context) => AddCardPage(),
+        '/check_out': (context) => CheckOutPage(hasCard: true),
+        '/my_cart': (context) => MyCart(),
+        '/food_page': (context) =>
+            FoodPages(food: ModalRoute.of(context)!.settings.arguments as Food),
+        '/restaurant': (context) => RestaurantPage(
+            restaurant: ModalRoute.of(context)!.settings.arguments as Restaurant),
         '/search': (context) => SearchPage(),
-        '/dashboard': (context) => RestaurantDashboard( loggedInUser: UserProvider().demoUser(),),
+        '/dashboard': (context) => const RestaurantDashboard(),
         '/onboarding1': (context) => OnboardingScreen(),
         '/login': (context) => const LoginPage(),
         '/signup': (context) => const SignUpPage(),
@@ -71,4 +88,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

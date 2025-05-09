@@ -1,5 +1,7 @@
 import 'package:bikex/components/buttons.dart';
 import 'package:bikex/components/cred_textfields.dart';
+import 'package:bikex/services/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -10,6 +12,51 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final AuthService _authService = AuthService();
+  bool _isLoading = false;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _handleLogin() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    String email = _emailController.text.trim();
+    String password = _passwordController.text;
+
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please fill in all fields')),
+      );
+      setState(() {
+        _isLoading = false;
+      });
+      return;
+    }
+
+    User? user = await _authService.signIn(email, password);
+
+    setState(() {
+      _isLoading = false;
+    });
+
+    if (user != null) {
+      Navigator.pushReplacementNamed(context, '/dashboard');
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Invalid email or password')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Stack(
         children: [
           Image.asset(
-            'assets/bg_asset.png', // Ensure this path is correct
+            'assets/bg_asset.png',
             fit: BoxFit.contain,
             width: MediaQuery.of(context).size.width,
           ),
@@ -30,9 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        height:120,
-                      ),
+                      const SizedBox(height: 120),
                       const Text(
                         "Log In",
                         style: TextStyle(
@@ -49,22 +94,28 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                   Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(24),
-                            topRight: Radius.circular(24))),
-                    padding: EdgeInsets.all(16),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(24),
+                        topRight: Radius.circular(24),
+                      ),
+                    ),
+                    padding: const EdgeInsets.all(16),
                     child: Column(
                       children: [
-                        buildCredTextField("EMAIL"),
-                        const SizedBox(
-                          height: 10,
+                        buildCredTextField(
+                          "EMAIL",
+                          controller: _emailController,
+                          keyboardType: TextInputType.emailAddress,
                         ),
-                        buildCredTextField("PASSWORD"),
-                        const SizedBox(
-                          height: 10,
+                        const SizedBox(height: 10),
+                        buildCredTextField(
+                          "PASSWORD",
+                          controller: _passwordController,
+                          isPassword: true,
                         ),
+                        const SizedBox(height: 10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -81,22 +132,28 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ],
                             ),
-                            textButton("Forgot Password", () {Navigator.pushNamed(context, '/forgot_password');})
+                            textButton("Forgot Password", () {
+                              Navigator.pushNamed(context, '/forgot_password');
+                            }),
                           ],
                         ),
                         const SizedBox(height: 20),
-                        elevatedButton("LOG IN", () {}),
+                        _isLoading
+                            ? const CircularProgressIndicator()
+                            : elevatedButton("LOG IN", _handleLogin),
                         const SizedBox(height: 20),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Text(
                               "Don't have an account?",
-                              style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold),
                             ),
                             textButton("SIGN UP", () {
                               Navigator.pushNamed(context, '/signup');
-                            })
+                            }),
                           ],
                         ),
                         const Text(
@@ -113,12 +170,10 @@ class _LoginPageState extends State<LoginPage> {
                             otherLoginMethods(Icons.apple, Colors.black),
                           ],
                         ),
-                        SizedBox(
-                          height: 24,
-                        )
+                        const SizedBox(height: 24),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

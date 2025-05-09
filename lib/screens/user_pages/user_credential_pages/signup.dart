@@ -1,5 +1,7 @@
 import 'package:bikex/components/buttons.dart';
 import 'package:bikex/components/cred_textfields.dart';
+import 'package:bikex/services/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -10,13 +12,13 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  // Add controllers for the text fields
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
+  final AuthService _authService = AuthService();
+  bool _isLoading = false;
 
-  // Add dispose method to clean up controllers
   @override
   void dispose() {
     _nameController.dispose();
@@ -26,19 +28,23 @@ class _SignUpPageState extends State<SignUpPage> {
     super.dispose();
   }
 
-  // Add signup function
-  void _handleSignup() {
-    // Get values from controllers
+  void _handleSignup() async {
+    setState(() {
+      _isLoading = true;
+    });
+
     String name = _nameController.text.trim();
     String email = _emailController.text.trim();
     String password = _passwordController.text;
     String confirmPassword = _confirmPasswordController.text;
 
-    // Basic validation
     if (name.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please fill in all fields')),
       );
+      setState(() {
+        _isLoading = false;
+      });
       return;
     }
 
@@ -46,6 +52,9 @@ class _SignUpPageState extends State<SignUpPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Passwords do not match')),
       );
+      setState(() {
+        _isLoading = false;
+      });
       return;
     }
 
@@ -53,22 +62,39 @@ class _SignUpPageState extends State<SignUpPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please enter a valid email')),
       );
+      setState(() {
+        _isLoading = false;
+      });
       return;
     }
 
-    // If validation passes, navigate to verification page
-    Navigator.pushNamed(
-      context, 
-      '/verification',
-      arguments: {'email': email}, // Pass email to verification page
-    );
+    User? user = await _authService.signUp(email, password, name);
+
+    setState(() {
+      _isLoading = false;
+    });
+
+    if (user != null) {
+      Navigator.pushNamed(
+        context,
+        '/verification',
+        arguments: {'email': email},
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Signup failed. Please try again.')),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(foregroundColor: Colors.white,backgroundColor: Colors.transparent,),
+      appBar: AppBar(
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
+      ),
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: SizedBox(
@@ -79,9 +105,7 @@ class _SignUpPageState extends State<SignUpPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 120,
-                  ),
+                  const SizedBox(height: 120),
                   const Text(
                     "Sign Up",
                     style: TextStyle(
@@ -98,12 +122,14 @@ class _SignUpPageState extends State<SignUpPage> {
                 ],
               ),
               Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(24),
-                        topRight: Radius.circular(24))),
-                padding: EdgeInsets.all(16),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(24),
+                    topRight: Radius.circular(24),
+                  ),
+                ),
+                padding: const EdgeInsets.all(16),
                 child: Column(
                   children: [
                     buildCredTextField(
@@ -126,11 +152,13 @@ class _SignUpPageState extends State<SignUpPage> {
                       isPassword: true,
                     ),
                     const SizedBox(height: 55),
-                    elevatedButton("SIGN UP", _handleSignup),
+                    _isLoading
+                        ? const CircularProgressIndicator()
+                        : elevatedButton("SIGN UP", _handleSignup),
                     const SizedBox(height: 20),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

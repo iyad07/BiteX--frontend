@@ -1,4 +1,4 @@
-class User {
+class RestaurantUser {
   final String id;
   final String name;
   final String email;
@@ -6,7 +6,7 @@ class User {
   final String phoneNumber;
  
 
-  User({
+  RestaurantUser({
     required this.id,
     required this.name,
     required this.email,
